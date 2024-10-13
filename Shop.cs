@@ -4,14 +4,24 @@ namespace FinalVers
 {
     internal class Shop
     {
+        
         public int i;
-        Item[] assortment = new Item[5] { new Lasergun(1, 150, "Pif Paf"), new Shotgun(21, 250, "Blobastic"), null, null, null };
+        public readonly Item[] assortment = [ 
+            new Lasergun(1, 150, "Pif Paf"), 
+            new Shotgun(2, 250, "Blobastic"), 
+            new Bat(3, 10, "Boopalka"),
+            new MegaFlist(4, 500, "Htysh")
+        ];
         public int uservar;
         public void enterShop(Player player)
         {
 
 
-            Console.WriteLine($"\nЧто вы желаете?(У вас на балансе {player.money} лягушек)\n1)Купить\n2)Продать\n3)назад");
+            Console.WriteLine($"\nЧто вы желаете?(У вас на балансе {player.money} лягушек)\n" +
+                $"1)Купить\n" +
+                $"2)Продать\n" +
+                $"3)назад"
+            );
             Console.Write("Введите цифру: ");
             uservar = Convert.ToInt32(Console.ReadLine());
             if (uservar == 1)

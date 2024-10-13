@@ -2,10 +2,10 @@
 {
     internal abstract class Item
     {
-        public int ID;
-        public int Price;
-        public string Name;
-        public string Type;
+        private int ID;
+        public readonly int Price;
+        public readonly string Name;
+        public readonly string Type;
 
         protected Item(int id, int price, string name, string type)
         {
@@ -14,5 +14,10 @@
             Name = name;
             Type = type;
         }
+        protected int GetId() 
+        {
+            return ID;
+        }
+        
     }
 }
