@@ -9,14 +9,13 @@ namespace FinalVers
         public double money = mony;
         public Item[] inventory = new Item[10];
         public int armor = armor;
-        protected Item chosenWeapon = null;
+        protected Weapon chosenWeapon = null;
 
         public void Attack(Weapon weapon, Player enemy)
         {
 
-
-            double totalDamage=Convert.ToSingle(weapon.Damage)/100*armor;
-            enemy.health = Convert.ToInt32(enemy.health - totalDamage);
+            int totalDamage=weapon.Damage;
+            enemy.health = enemy.health - totalDamage;
             Console.WriteLine($"{this.name} аттаковал {enemy.name} на {totalDamage}");
         }
 
@@ -26,7 +25,7 @@ namespace FinalVers
 
         }
 
-        public Item getChosenWeapon()
+        public Weapon getChosenWeapon()
         {
             if (this.chosenWeapon == null) { return null; }
             else
@@ -36,7 +35,7 @@ namespace FinalVers
             }
         }
 
-        public void setWeapon(Item weapon)
+        public void setWeapon(Weapon weapon)
         {
             this.chosenWeapon = weapon;
         }
@@ -68,7 +67,7 @@ namespace FinalVers
             {
                 Console.Write("\nВыберите своё оружие: ");
                 int answ = Convert.ToInt32(Console.ReadLine());
-                this.chosenWeapon = inventory[answ-1];
+                this.chosenWeapon = (Weapon)inventory[answ-1];
                 Console.WriteLine($"Вы выбрали {this.chosenWeapon.Name}({this.chosenWeapon.Type})");
             }
             
