@@ -7,7 +7,7 @@ internal class Program
         Console.WriteLine("\nДобро пожаловать в мою игру!");
         Player player = new Player("Alex", 100, 500);
         Shop shop = new Shop();
-        Intro.start(player);
+        Menu.start(player);
 
 
     }

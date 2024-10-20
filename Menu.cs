@@ -1,6 +1,6 @@
 ﻿namespace FinalVers
 {
-    internal class Intro
+    internal class Menu
     {
         public static void start(Player player)
         {
