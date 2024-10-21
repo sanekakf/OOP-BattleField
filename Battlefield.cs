@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace FinalVers
 {
@@ -68,6 +69,39 @@ namespace FinalVers
 
         }
 
+        public void midFight(Player player, Player enemy)
+        {
+            Console.Write("\nВы хотите продолжить битву?\n" +
+                    "1)Продолжить\n" +
+                    "2)Бежать с поле боя\n" +
+                    "3)Использовать инвентарь\n" +
+                    "Введите цифру: ");
+            int next = Convert.ToInt32(Console.ReadLine());
+            switch (next)
+            {
+                case 1:
+                    Fight(player, enemy); break;
+                case 2:
+                    Menu.start(player); break;
+                case 3:
+                    Console.WriteLine("\nВаш инвентарь:");
+                    Item[] inventory = player.inventory;
+                    for (int i = 0; i<inventory.Length; i++)
+                    {
+                        if (inventory[i] != null)
+                        {
+                            Console.WriteLine($"{i + 1}) {inventory[i].Name}[{inventory[i].Type}]");
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    midFight(player, enemy);
+                    break;
+            }
+        }
+
 
         public void Fight(Player player, Player enemy)
         {
@@ -109,27 +143,19 @@ namespace FinalVers
                 {
                     Console.WriteLine("Вы проиграли!...");
                     Console.ReadKey();
+                    player.health = 100;
                     Menu.start(player);
                 }
                 else if (enemy.health <= 0) 
                 {
                     Console.WriteLine("ПОБЕДА!...");
                     player.money += random.Next(50,300);
+                    player.health += 15;
                     Console.ReadKey();
                     findBattle(player);
                 }
-                Console.Write("\nВы хотите продолжить битву?\n" +
-                    "1)Продолжить\n" +
-                    "2)Бежать с поле боя\n" +
-                    "Введите цифру: ");
-                int next = Convert.ToInt32(Console.ReadLine());
-                switch (next)
-                {
-                    case 1:
-                        Fight(player, enemy); break;
-                    case 2:
-                        Menu.start(player); break;
-                }
+                midFight(player, enemy);
+                
 
             }
 

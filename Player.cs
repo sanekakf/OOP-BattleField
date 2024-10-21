@@ -1,4 +1,5 @@
 ﻿using FinalVers.Guns;
+using GameeE;
 
 namespace FinalVers
 {
@@ -85,6 +86,27 @@ namespace FinalVers
             }
 
 
+        }
+
+        public void useItem(Item item)
+        {
+            if (inventory.Contains(item))
+            {
+                if (item.GetType() == typeof(Food))
+                {
+                    var food = (Food)item;
+                    this.health += food.HealingPoints;
+                    Console.WriteLine($"{this.name} использовал предмет {food.Name} и восполнил здоровье на {food.HealingPoints}");
+                }
+                else
+                {
+                    Console.WriteLine("Данный предмет не является едой или зельем");
+                }
+            }
+            else
+            {
+                Console.WriteLine("У вас нет этого предмета в инветаре!");
+            }
         }
 
     }
